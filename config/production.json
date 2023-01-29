@@ -1,4 +1,0 @@
-{
-    "name": "kanban-prod",
-    "mongodb_uri": "mongodb://localhost:27017/kanban"
-}
