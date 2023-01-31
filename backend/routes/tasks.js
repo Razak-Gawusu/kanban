@@ -33,8 +33,16 @@ route.post("/", async (req, res) => {
       title: req.body.title,
       description: req.body.description,
       status: req.body.status,
-      subTasks: req.body.subTasks,
+      // subTasks: req.body.subTasks,
     });
+
+    function addTasks(data) {
+      for (item of data) {
+        task.subTasks.push(item);
+      }
+    }
+
+    await addTasks(req.body.subTasks);
     await task.save();
 
     // TODO: use 2 way commit
@@ -84,6 +92,17 @@ route.delete("/:id", async (req, res) => {
 
   const task = await Task.findById(req.params.id);
   if (!task) return res.status(404).send("task not Found");
+
+  const board = await Board.findById(req.body.boardId);
+  const column = await Column.findById(req.body.columnId);
+
+  const columnTask = column.tasks.id(req.params.id);
+  const boardTask = board.columns.id(req.body.columnId).tasks.id(req.params.id);
+
+  columnTask.remove();
+  boardTask.remove();
+  column.save();
+  board.save();
 
   const result = await Task.findByIdAndRemove(req.params.id);
   res.status(200).send(result);

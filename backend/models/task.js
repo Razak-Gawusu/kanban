@@ -1,6 +1,20 @@
 const mongoose = require("mongoose");
 const Joi = require("joi");
 
+const subTaskSchema = new mongoose.Schema({
+  title: {
+    type: String,
+    required: true,
+    minLength: 3,
+    maxLenght: 255,
+    trim: true,
+  },
+  isCompleted: {
+    type: Boolean,
+    default: false,
+  },
+});
+
 const taskSchema = new mongoose.Schema(
   {
     title: {
@@ -20,7 +34,7 @@ const taskSchema = new mongoose.Schema(
       maxLenght: 50,
       required: true,
     },
-    subTasks: Array,
+    subTasks: [subTaskSchema],
   },
   {
     timestamps: true,
@@ -41,7 +55,15 @@ function validateTask(data) {
 
   return schema.validate(data);
 }
+function validateSubTask(data) {
+  const schema = Joi.object({
+    title: Joi.string().min(3).max(255).required(),
+  });
+
+  return schema.validate(data);
+}
 
 exports.Task = Task;
 exports.taskSchema = taskSchema;
 exports.validate = validateTask;
+exports.validateSubTask = validateSubTask;

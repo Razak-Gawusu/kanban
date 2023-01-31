@@ -5,7 +5,7 @@ const { validateId } = require("../helpers/validateIds");
 const route = express.Router();
 
 route.get("/", async (req, res) => {
-  const board = await Board.find({}).sort("-updatedAt").select("name");
+  const board = await Board.find({}).sort("-updatedAt");
   res.status(200).send(board);
 });
 
