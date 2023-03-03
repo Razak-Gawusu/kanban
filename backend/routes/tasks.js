@@ -1,6 +1,6 @@
 const express = require("express");
 const debug = require("debug")("app:dev");
-const { Task, validate } = require("../models/task");
+const { Task, SubTask, validate } = require("../models/task");
 const { Column } = require("../models/column");
 const { Board } = require("../models/board");
 const { validateId } = require("../helpers/validateIds");
@@ -33,12 +33,14 @@ route.post("/", async (req, res) => {
       title: req.body.title,
       description: req.body.description,
       status: req.body.status,
-      // subTasks: req.body.subTasks,
     });
 
-    function addTasks(data) {
+    async function addTasks(data) {
       for (item of data) {
-        task.subTasks.push(item);
+        const subTask = await new SubTask({
+          title: item.title,
+        });
+        task.subTasks.push(subTask);
       }
     }
 

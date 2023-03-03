@@ -42,6 +42,7 @@ const taskSchema = new mongoose.Schema(
 );
 
 const Task = mongoose.model("Task", taskSchema);
+const SubTask = mongoose.model("SubTask", subTaskSchema);
 
 function validateTask(data) {
   const schema = Joi.object({
@@ -64,6 +65,7 @@ function validateSubTask(data) {
 }
 
 exports.Task = Task;
+exports.SubTask = SubTask;
 exports.taskSchema = taskSchema;
 exports.validate = validateTask;
 exports.validateSubTask = validateSubTask;
