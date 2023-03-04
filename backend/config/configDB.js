@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 const express = require("express");
 const debugDB = require("debug")("app:db");
 const config = require("config");
+const AppError = require("../utils/error.util");
 
 const app = express();
 let mongodb_uri = config.get("mongodb_uri");
@@ -24,7 +25,7 @@ async function mongoDB() {
     const db = await mongoose.connect(mongodb_uri);
     if (db) debugDB(`successfully connected to db ${ENV}`);
   } catch (error) {
-    debugDB(error.message);
+    throw new AppError(error.message, 500);
   }
 }
 
