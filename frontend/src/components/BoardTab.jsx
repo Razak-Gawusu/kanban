@@ -1,20 +1,26 @@
 import React from "react";
-import { Flex, Image, Text } from "@chakra-ui/react";
+import { Flex, Text, Image } from "@chakra-ui/react";
 import styled from "@emotion/styled";
-import white from "../asset/icons/boardIcon-white.svg";
-import voilet from "../asset/icons/boardIcon-voilet.svg";
-import grey from "../asset/icons/boardIcon-grey.svg";
 
 const Tab = styled(Flex)`
   gap: 12px;
   padding: 14px 24px;
   background-color: var(--white);
   color: var(--grey-300);
+  border-radius: 0 25px 25px 0;
+  cursor: pointer;
+
+  &:hover {
+    background-color: var(--grey-200);
+    color: var(--primary);
+    .svg {
+      fill: var(--primary);
+    }
+  }
 
   &.active {
     background-color: var(--primary);
     color: var(--white);
-    border-radius: 0 25px 25px 0;
   }
 
   &.plain {
@@ -22,22 +28,11 @@ const Tab = styled(Flex)`
   }
 `;
 
-function getIcon(variant) {
-  if (variant === "active") {
-    return white;
-  } else if (variant === "plain") {
-    return voilet;
-  } else {
-    return grey;
-  }
-}
-
-function BoardTab({ label, variant }) {
+function BoardTab({ label, variant, src }) {
   return (
     <Tab className={variant} maxW={"276px"}>
-      <Image src={getIcon(variant)} />
+      <Image src={src} />
       <Text textTransform={"capitalize"} fontWeight={700}>
-        {variant === "plain" && "+  "}
         {label}
       </Text>
     </Tab>
