@@ -12,11 +12,14 @@ const getAll = (Model) => async (req, res) => {
 };
 
 const getOne = (Model, populateOptions) => async (req, res) => {
-  const board = await Model.findById(req.params.id).populate(populateOptions);
+  const doc = await Model.findById(req.params.id).populate(populateOptions);
+
+  if (!doc) throw new AppError("Document not Found", 404);
+
   res.status(200).json({
     status: "success",
     data: {
-      board,
+      doc,
     },
   });
 };

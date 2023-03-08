@@ -15,6 +15,11 @@ const subTaskSchema = new mongoose.Schema({
     type: Boolean,
     default: false,
   },
+  task: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Task",
+    required: true,
+  },
 });
 
 const SubTask = mongoose.model("SubTask", subTaskSchema);

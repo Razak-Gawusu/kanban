@@ -8,7 +8,7 @@ const {
 } = require("./factory.controller");
 
 const getAllTasks = getAll(Task);
-const getTask = getOne(Task, { path: "columns" });
+const getTask = getOne(Task, { path: "subTasks column" });
 const createTask = createOne(Task);
 const deleteTask = deleteOne(Task);
 const updateTask = updateOne(Task);

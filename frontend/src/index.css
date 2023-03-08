@@ -1,0 +1,25 @@
+:root {
+  --primary: #635FC7;
+  --primary-light: #A8A4FF;
+  --black: #000112;
+  --grey-600: #20212C;
+  --grey-500: #2B2C37;
+  --grey-400: #3E3F4E;
+  --grey-300: #828FA3;
+  --grey-200: #E4EBFA;
+  --grey-100: #F4F7FD;
+  --secondary: #EA5555;
+  --secondary-light: #FF9898;
+  --white: #ffffff;
+}
+body {
+  margin: 0;
+  font-family: 'Plus Jakarta Sans', sans-serif;;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
