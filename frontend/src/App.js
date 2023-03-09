@@ -1,4 +1,10 @@
-import { CustomButton, BoardTab, ToggleSwitch, SubTask } from "./components";
+import {
+  CustomButton,
+  BoardTab,
+  ToggleSwitch,
+  SubTask,
+  BaseInput,
+} from "./components";
 import white from "./asset/icons/boardIcon-white.svg";
 import voilet from "./asset/icons/boardIcon-voilet.svg";
 import grey from "./asset/icons/boardIcon-grey.svg";
@@ -23,6 +29,7 @@ function App() {
       <ToggleSwitch />
 
       <SubTask title={"This is a subtask"} isCompleted={true} />
+      <BaseInput label={"TextField"} type={"text"} />
     </div>
   );
 }

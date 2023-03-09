@@ -8,7 +8,10 @@ const {
 } = require("./factory.controller");
 
 const getAllBoards = getAll(Board);
-const getBoard = getOne(Board, { path: "columns" });
+const getBoard = getOne(Board, {
+  path: "columns",
+  populate: { path: "tasks", populate: { path: "subTasks" } },
+});
 const createBoard = createOne(Board);
 const deleteBoard = deleteOne(Board);
 const updateBoard = updateOne(Board);

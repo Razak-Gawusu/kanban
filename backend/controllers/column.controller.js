@@ -8,7 +8,10 @@ const {
 } = require("./factory.controller");
 
 const getAllColumns = getAll(Column);
-const getColumn = getOne(Column, { path: "tasks" });
+const getColumn = getOne(Column, {
+  path: "tasks",
+  populate: { path: "subTasks" },
+});
 const createColumn = createOne(Column);
 const deleteColumn = deleteOne(Column);
 const updateColumn = updateOne(Column);
